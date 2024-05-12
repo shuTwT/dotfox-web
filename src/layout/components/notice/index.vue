@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeUnmount, ref } from "vue";
 import { noticesData } from "./data";
 import NoticeList from "./noticeList.vue";
 import Bell from "@iconify-icons/ep/bell";
+import { emitter } from "@/utils/mitt";
 
 const noticesNum = ref(0);
 const notices = ref(noticesData);
 const activeKey = ref(noticesData[0].key);
 
 notices.value.map(v => (noticesNum.value += v.list.length));
+const handleNoticeUpdate = ({ data }) => {
+  console.log(data);
+};
+emitter.on("noticeEventSource", handleNoticeUpdate);
+onBeforeUnmount(() => {
+  emitter.off("noticeEventSource", handleNoticeUpdate);
+});
 </script>
 
 <template>

@@ -8,6 +8,7 @@ type Events = {
   tagViewsShowModel: string;
   logoChange: boolean;
   changLayoutRoute: string;
+  noticeEventSource: object;
 };
 
 export const emitter: Emitter<Events> = mitt<Events>();

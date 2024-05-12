@@ -3,7 +3,8 @@ import router from "./router";
 import { setupStore } from "@/store";
 import { getPlatformConfig } from "./config";
 import { MotionPlugin } from "@vueuse/motion";
-// import { useEcharts } from "@/plugins/echarts";
+import { emitter } from "@/utils/mitt";
+import { useEcharts } from "@/plugins/echarts";
 import { createApp, type Directive } from "vue";
 import { useElementPlus } from "@/plugins/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
@@ -50,13 +51,34 @@ import "tippy.js/themes/light.css";
 import VueTippy from "vue-tippy";
 app.use(VueTippy);
 
+// 连接SSE流
+const source = new EventSource("/api/system/notice/msg");
+source.onopen = () => console.log("Connection opened");
+source.onerror = console.error;
+source.onmessage = ({ data }) => {
+  try {
+    const parsedData = JSON.parse(data);
+    if (parsedData.code == 200) {
+      emitter.emit("noticeEventSource", parsedData);
+    } else {
+      source.close();
+    }
+  } catch (error) {
+    console.error(error);
+    source.close();
+  }
+};
+
 getPlatformConfig(app).then(async config => {
   setupStore(app);
   app.use(router);
   await router.isReady();
   injectResponsiveStorage(app, config);
-  app.use(MotionPlugin).use(useElementPlus).use(Table);
-  // .use(PureDescriptions)
-  // .use(useEcharts);
+  app
+    .use(MotionPlugin)
+    .use(useElementPlus)
+    .use(Table)
+    // .use(PureDescriptions)
+    .use(useEcharts);
   app.mount("#app");
 });

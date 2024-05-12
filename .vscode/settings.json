@@ -1,13 +1,13 @@
 {
-  "editor.formatOnType": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": false,
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.tabSize": 2,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.guides.bracketPairs": "active",
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "git.confirmSync": false,
   "workbench.startupEditor": "newUntitledFile",
   "editor.suggestSelection": "first",

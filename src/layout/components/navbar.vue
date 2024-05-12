@@ -6,6 +6,7 @@ import { useNav } from "@/layout/hooks/useNav";
 import FullScreen from "./sidebar/fullScreen.vue";
 import Breadcrumb from "./sidebar/breadCrumb.vue";
 import topCollapse from "./sidebar/topCollapse.vue";
+import AccountSettingsIcon from "@iconify-icons/ri/user-settings-line";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
 
@@ -18,7 +19,8 @@ const {
   username,
   userAvatar,
   avatarsStyle,
-  toggleSideBar
+  toggleSideBar,
+  toAccountSettings
 } = useNav();
 </script>
 
@@ -53,6 +55,13 @@ const {
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
+            <el-dropdown-item @click="toAccountSettings">
+              <IconifyIconOffline
+                :icon="AccountSettingsIcon"
+                style="margin: 5px"
+              />
+              账户设置
+            </el-dropdown-item>
             <el-dropdown-item @click="logout">
               <IconifyIconOffline
                 :icon="LogoutCircleRLine"

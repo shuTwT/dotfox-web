@@ -13,6 +13,8 @@ import { stringify } from "qs";
 import NProgress from "../progress";
 import { getToken, formatToken } from "@/utils/auth";
 import { useUserStoreHook } from "@/store/modules/user";
+import { message } from "@/utils/message";
+import { ElMessageBox } from "element-plus";
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
@@ -120,19 +122,55 @@ class PureHttp {
     const instance = PureHttp.axiosInstance;
     instance.interceptors.response.use(
       (response: PureHttpResponse) => {
+        // 设置状态码
+        const code = response.data.code || 200;
+        // 设置错误信息
+        const msg = response.data.msg || "未知错误";
         const $config = response.config;
         // 关闭进度条动画
         NProgress.done();
+        if (code === 401) {
+          ElMessageBox.confirm(
+            "登录状态已过期，您可以选择留在本页或重新登录",
+            "系统提示",
+            {
+              confirmButtonText: "重新登录",
+              cancelButtonText: "取消",
+              type: "warning"
+            }
+          ).then(() => {
+            useUserStoreHook().logOut();
+          });
+        } else if (code === 500) {
+          message(msg, { type: "error" });
+          return Promise.reject(new Error(msg));
+        } else if (code !== 200) {
+          message(msg, { type: "warning" });
+          return Promise.reject("error");
+        }
         // 优先判断post/get等方法是否传入回调，否则执行初始化设置等回调
         if (typeof $config.beforeResponseCallback === "function") {
           $config.beforeResponseCallback(response);
-          return response.data;
+          return {
+            ...response.data,
+            code,
+            msg
+          };
         }
         if (PureHttp.initConfig.beforeResponseCallback) {
           PureHttp.initConfig.beforeResponseCallback(response);
-          return response.data;
+          return {
+            ...response.data,
+            code,
+            msg
+          };
         }
-        return response.data;
+
+        return {
+          ...response.data,
+          code,
+          msg
+        };
       },
       (error: PureHttpError) => {
         const $error = error;
