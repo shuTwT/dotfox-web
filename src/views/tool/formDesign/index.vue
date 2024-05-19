@@ -1,20 +1,49 @@
 <script setup lang="ts">
+import { ref } from "vue";
 defineOptions({
   name: "formDesign"
 });
+
+const starfishRef = ref();
+
+const menu = ref({
+  left: [],
+  right: [],
+  column: false
+});
+
+const panel = ref(["form", "json", "global"]);
+
+const onSave = (res: any[]) => {};
+
+const goSave = () => {};
+
+const goPreview = () => {};
+
+const setJson = () => {};
 </script>
 
 <template>
-  <iframe
-    class="frame-iframe"
-    src="https://haixin-fang.github.io/vue-form-design/playground/index.html"
-  />
+  <div class="starfish-editor-wrapper">
+    <starfish-editor
+      ref="starfishRef"
+      class="starfish-editor"
+      :menu="menu"
+      :panel="panel"
+      @save="onSave"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.frame-iframe {
+.starfish-editor-wrapper {
   width: 100%;
   height: 100%;
   margin: 0 !important;
+}
+
+.starfish-editor {
+  width: 100%;
+  height: 100%;
 }
 </style>
