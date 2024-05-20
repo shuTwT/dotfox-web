@@ -5,7 +5,7 @@
   </el-form-item>
 </template>
 
-<script>
+<script lang="ts">
   import i18n from "@/utils/i18n"
   import OptionItemsSetting from "@/components/form-designer/setting-panel/option-items-setting"
 

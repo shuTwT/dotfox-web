@@ -2,7 +2,7 @@
   <div style="display: none"></div>
 </template>
 
-<script>
+<script lang="ts">
   export default {
     name: "select-defaultValue-editor",
     props: {

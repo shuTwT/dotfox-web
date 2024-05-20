@@ -18,7 +18,7 @@
   </el-form-item>
 </template>
 
-<script>
+<script lang="ts">
   import i18n from "@/utils/i18n"
   import {isEmptyStr} from "@/utils/util"
   import SvgIcon from "@/components/svg-icon/index";
