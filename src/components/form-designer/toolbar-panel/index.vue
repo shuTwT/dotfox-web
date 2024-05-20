@@ -184,9 +184,9 @@
   </div>
 </template>
 
-<script>
-  import VFormRender from '@/components/form-render/index'
-  import CodeEditor from '@/components/code-editor/index'
+<script lang="ts">
+  import VFormRender from '@/components/form-render/index.vue'
+  import CodeEditor from '@/components/code-editor/index.vue'
   import Clipboard from 'clipboard'
   import {
     deepClone,
@@ -194,14 +194,14 @@
     generateId,
     getQueryParam,
     traverseAllWidgets, addWindowResizeHandler
-  } from "@/utils/util"
-  import i18n from '@/utils/i18n'
-  import {generateCode} from "@/utils/code-generator"
-  import {genSFC} from "@/utils/sfc-generator"
-  import loadBeautifier from "@/utils/beautifierLoader"
+  } from "@/utils/vform3/util"
+  import i18n from '@/utils/vform3/i18n'
+  import {generateCode} from "@/utils/vform3/code-generator"
+  import {genSFC} from "@/utils/vform3/sfc-generator"
+  import loadBeautifier from "@/utils/vform3/beautifierLoader"
   import { saveAs } from 'file-saver'
   import axios from 'axios'
-  import SvgIcon from "@/components/svg-icon/index";
+  import SvgIcon from "@/components/svg-icon/index.vue";
 
   export default {
     name: "ToolbarPanel",

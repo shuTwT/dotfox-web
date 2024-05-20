@@ -43,10 +43,10 @@
   </container-wrapper>
 </template>
 
-<script>
-  import i18n from "@/utils/i18n"
+<script lang="ts">
+  import i18n from "@/utils/vform3/i18n"
   import containerMixin from "@/components/form-designer/form-widget/container-widget/containerMixin"
-  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper"
+  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper.vue"
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
   import refMixinDesign from "@/components/form-designer/refMixinDesign"
 

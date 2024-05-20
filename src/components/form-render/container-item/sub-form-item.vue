@@ -62,15 +62,15 @@
   </container-item-wrapper>
 </template>
 
-<script>
-  import emitter from '@/utils/emitter'
-  import i18n from '@/utils/i18n'
-  import {deepClone, generateId} from '@/utils/util'
+<script lang="ts">
+  import emitter from '@/utils/vform3/emitter'
+  import i18n from '@/utils/vform3/i18n'
+  import {deepClone, generateId} from '@/utils/vform3/util'
   import refMixin from '../../../components/form-render/refMixin'
-  import ContainerItemWrapper from './container-item-wrapper'
+  import ContainerItemWrapper from './container-item-wrapper.vue'
   import containerItemMixin from './containerItemMixin'
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
-  import SvgIcon from "@/components/svg-icon/index";
+  import SvgIcon from "@/components/svg-icon/index.vue";
 
   export default {
     name: "sub-form-item",

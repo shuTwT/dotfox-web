@@ -36,16 +36,16 @@
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
   //import ElForm from 'element-ui/packages/form/src/form.vue'  /* 用于源码调试Element UI */
-  import emitter from '@/utils/emitter'
+  import emitter from '@/utils/vform3/emitter'
   import './container-item/index'
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
   import {
     generateId, deepClone, insertCustomCssToHead, insertGlobalFunctionsToHtml, getAllContainerWidgets,
     getAllFieldWidgets, traverseFieldWidgets, buildDefaultFormJson
-  } from "@/utils/util"
-  import i18n, { changeLocale } from "@/utils/i18n"
+  } from "@/utils/vform3/util"
+  import i18n, { changeLocale } from "@/utils/vform3/i18n"
 
   export default {
     name: "VFormRender",
@@ -463,7 +463,7 @@
           return this.formDataModel
         }
 
-        let callback = function nullFunc() {}
+        let callback = function nullFunc(formData, error?:any) {}
         let promise = new window.Promise(function (resolve, reject) {
           callback = function(formData, error) {
             !error ? resolve(formData) : reject(error);

@@ -6,7 +6,7 @@
   </static-content-wrapper>
 </template>
 
-<script>
+<script lang="ts">
   import StaticContentWrapper from './static-content-wrapper'
   import emitter from '@/utils/emitter'
   import i18n, {translate} from "@/utils/i18n";

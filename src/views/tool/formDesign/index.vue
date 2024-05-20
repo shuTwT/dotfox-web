@@ -1,49 +1,27 @@
 <script setup lang="ts">
+import VFormDesigner from "@/components/form-designer/index.vue"
 import { ref } from "vue";
 defineOptions({
   name: "formDesign"
 });
-
-const starfishRef = ref();
-
-const menu = ref({
-  left: [],
-  right: [],
-  column: false
-});
-
-const panel = ref(["form", "json", "global"]);
-
-const onSave = (res: any[]) => {};
-
-const goSave = () => {};
-
-const goPreview = () => {};
-
-const setJson = () => {};
+const globalDsv = ref({
+  testApiHost:"",
+  testPort:8080
+})
 </script>
 
 <template>
-  <div class="starfish-editor-wrapper">
-    <starfish-editor
-      ref="starfishRef"
-      class="starfish-editor"
-      :menu="menu"
-      :panel="panel"
-      @save="onSave"
-    />
+  <div class="form-designer-wrapper">
+    <VFormDesigner ref="vfDesignerRef" :global-dsv="globalDsv">
+
+    </VFormDesigner>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.starfish-editor-wrapper {
+.form-designer-wrapper {
   width: 100%;
   height: 100%;
   margin: 0 !important;
-}
-
-.starfish-editor {
-  width: 100%;
-  height: 100%;
 }
 </style>

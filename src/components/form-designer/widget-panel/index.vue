@@ -90,13 +90,13 @@
   </el-scrollbar>
 </template>
 
-<script>
+<script lang="ts">
   import {containers as CONS, basicFields as BFS, advancedFields as AFS, customFields as CFS} from "./widgetsConfig"
   import {formTemplates} from './templatesConfig'
-  import {addWindowResizeHandler, generateId} from "@/utils/util"
-  import i18n from "@/utils/i18n"
+  import {addWindowResizeHandler, generateId} from "@/utils/vform3/util"
+  import i18n from "@/utils/vform3/i18n"
   import axios from 'axios'
-  import SvgIcon from "@/components/svg-icon/index";
+  import SvgIcon from "@/components/svg-icon/index.vue";
 
   // import ftImg1 from '@/assets/ft-images/t1.png'
   // import ftImg2 from '@/assets/ft-images/t2.png'

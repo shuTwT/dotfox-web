@@ -25,11 +25,11 @@
   </container-wrapper>
 </template>
 
-<script>
-  import i18n from "@/utils/i18n"
-  import GridColWidget from "@/components/form-designer/form-widget/container-widget/grid-col-widget"
+<script lang="ts">
+  import i18n from "@/utils/vform3/i18n"
+  import GridColWidget from "@/components/form-designer/form-widget/container-widget/grid-col-widget/index.vue"
   import containerMixin from "@/components/form-designer/form-widget/container-widget/containerMixin";
-  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper";
+  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper/index.vue";
   import refMixinDesign from "@/components/form-designer/refMixinDesign"
 
   export default {

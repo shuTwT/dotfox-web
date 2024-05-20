@@ -12,7 +12,7 @@
   <el-container class="main-container full-height">
     <el-header class="main-header">
       <div class="float-left main-title">
-        <img src="../../assets/vform-logo.png" @click="openHome">
+        <img src="@/assets/vform-logo.png" @click="openHome">
         <span class="bold">VForm 3</span> {{i18nt('application.productTitle')}} <span class="version-span">Ver {{vFormVersion}}</span></div>
       <div class="float-right external-link">
         <el-dropdown v-if="showLink('languageMenu')" :hide-timeout="2000" @command="handleLanguageChanged">

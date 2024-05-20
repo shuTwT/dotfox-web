@@ -84,7 +84,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import CodeEditor from '@/components/code-editor/index'
   import i18n from "@/utils/i18n";
 

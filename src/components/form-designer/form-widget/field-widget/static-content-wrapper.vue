@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import i18n from "@/utils/i18n"
   import SvgIcon from '@/components/svg-icon'
 

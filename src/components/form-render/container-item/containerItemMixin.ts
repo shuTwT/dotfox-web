@@ -1,4 +1,4 @@
-import { traverseFieldWidgetsOfContainer } from "@/utils/util";
+import { traverseFieldWidgetsOfContainer } from "@/utils/vform3/util";
 
 export default {
   inject: ["getFormConfig", "getGlobalDsv"],

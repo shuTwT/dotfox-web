@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import ace from 'ace-builds'
   /* 启用此行后webpack打包回生成很多动态加载的js文件，不便于部署，故禁用！！
      特别提示：禁用此行后，需要调用ace.config.set('basePath', 'path...')指定动态js加载URL！！

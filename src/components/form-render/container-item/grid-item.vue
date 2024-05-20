@@ -19,12 +19,12 @@
   </container-item-wrapper>
 </template>
 
-<script>
-  import emitter from '@/utils/emitter'
-  import i18n from "../../../utils/i18n"
+<script lang="ts">
+  import emitter from '@/utils/vform3/emitter'
+  import i18n from "@/utils/vform3/i18n"
   import refMixin from "../../../components/form-render/refMixin"
-  import ContainerItemWrapper from './container-item-wrapper'
-  import GridColItem from './grid-col-item'
+  import ContainerItemWrapper from './container-item-wrapper.vue'
+  import GridColItem from './grid-col-item.vue'
   import containerItemMixin from "./containerItemMixin"
 
   export default {

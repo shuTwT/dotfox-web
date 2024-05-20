@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import i18n from "@/utils/i18n"
   //import Draggable from 'vuedraggable'
   import {deepClone} from "@/utils/util";

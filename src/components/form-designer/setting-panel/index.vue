@@ -92,7 +92,7 @@
   </el-container>
 </template>
 
-<script>
+<script lang="ts">
   import CodeEditor from '@/components/code-editor/index'
   import PropertyEditors from './property-editor/index'
   import FormSetting from './form-setting'

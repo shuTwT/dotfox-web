@@ -19,7 +19,7 @@
   </form-item-wrapper>
 </template>
 
-<script>
+<script lang="ts">
   import FormItemWrapper from './form-item-wrapper'
   import emitter from '@/utils/emitter'
   import i18n, {translate} from "@/utils/i18n";

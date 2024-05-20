@@ -39,10 +39,10 @@
   </div>
 </template>
 
-<script>
-  import i18n from "@/utils/i18n";
+<script lang="ts">
+  import i18n from "@/utils/vform3/i18n";
   import containerMixin from "@/components/form-designer/form-widget/container-widget/containerMixin";
-  import SvgIcon from '@/components/svg-icon'
+  import SvgIcon from '@/components/svg-icon/index.vue'
 
   export default {
     name: "container-wrapper",

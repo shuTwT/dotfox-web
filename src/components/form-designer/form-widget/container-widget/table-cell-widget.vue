@@ -54,11 +54,11 @@
   </td>
 </template>
 
-<script>
-  import i18n from "@/utils/i18n"
+<script lang="ts">
+  import i18n from "@/utils/vform3/i18n"
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
   import refMixinDesign from "@/components/form-designer/refMixinDesign"
-  import SvgIcon from '@/components/svg-icon'
+  import SvgIcon from '@/components/svg-icon/index.vue'
 
   export default {
     name: "TableCellWidget",
