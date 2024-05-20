@@ -22,9 +22,7 @@
     props: {
       designer: Object,
       selectedWidget: Object,
-      optionModel: {
-        type:Object
-      },
+      optionModel: Object,
     },
   }
 </script>
