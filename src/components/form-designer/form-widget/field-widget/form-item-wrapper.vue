@@ -61,8 +61,8 @@
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/i18n";
-  import SvgIcon from '@/components/svg-icon'
+  import i18n from "@/utils/vform3/i18n";
+  import SvgIcon from '@/components/svg-icon/index.vue'
 
   export default {
     name: "form-item-wrapper",

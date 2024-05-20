@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts">
-  import FormItemWrapper from './form-item-wrapper'
-  import emitter from '@/utils/emitter'
-  import i18n, {translate} from "@/utils/i18n";
+  import FormItemWrapper from './form-item-wrapper.vue'
+  import emitter from '@/utils/vform3/emitter'
+  import i18n, {translate} from "@/utils/vform3/i18n";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
 
   export default {

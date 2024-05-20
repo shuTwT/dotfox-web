@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/i18n";
+  import i18n from "@/utils/vform3/i18n";
 
   export default {
     name: "sub-form-labelAlign-editor",

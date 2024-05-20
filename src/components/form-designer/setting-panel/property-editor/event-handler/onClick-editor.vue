@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/i18n"
+  import i18n from "@/utils/vform3/i18n"
   import eventMixin from "@/components/form-designer/setting-panel/property-editor/event-handler/eventMixin"
 
   export default {

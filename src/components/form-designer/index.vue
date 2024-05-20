@@ -62,18 +62,18 @@
   </el-container>
 </template>
 
-<script>
-  import WidgetPanel from './widget-panel/index'
-  import ToolbarPanel from './toolbar-panel/index'
-  import SettingPanel from './setting-panel/index'
-  import VFormWidget from './form-widget/index'
+<script lang="ts">
+  import WidgetPanel from './widget-panel/index.vue'
+  import ToolbarPanel from './toolbar-panel/index.vue'
+  import SettingPanel from './setting-panel/index.vue'
+  import VFormWidget from './form-widget/index.vue'
   import {createDesigner} from "@/components/form-designer/designer"
   import {addWindowResizeHandler, deepClone, getQueryParam, getAllContainerWidgets,
-    getAllFieldWidgets, traverseAllWidgets} from "@/utils/util"
-  import {MOCK_CASE_URL, VARIANT_FORM_VERSION} from "@/utils/config"
-  import i18n, { changeLocale } from "@/utils/i18n"
+    getAllFieldWidgets, traverseAllWidgets} from "@/utils/vform3/util"
+  import {MOCK_CASE_URL, VARIANT_FORM_VERSION} from "@/utils/vform3/config"
+  import i18n, { changeLocale } from "@/utils/vform3/i18n"
   import axios from 'axios'
-  import SvgIcon from "@/components/svg-icon/index"
+  import SvgIcon from "@/components/svg-icon/index.vue"
 
   export default {
     name: "VFormDesigner",

@@ -35,9 +35,9 @@
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/i18n"
+  import i18n from "@/utils/vform3/i18n"
   //import Draggable from 'vuedraggable'
-  import {deepClone} from "@/utils/util";
+  import {deepClone} from "@/utils/vform3/util";
 
   export default {
     name: "tab-customClass-editor",
