@@ -34,12 +34,12 @@
 </template>
 
 <script lang="ts">
-  import FormItemWrapper from './form-item-wrapper'
-  import emitter from '@/utils/emitter'
-  import i18n, {translate} from "@/utils/i18n";
-  import {deepClone, evalFn} from "@/utils/util";
+  import FormItemWrapper from './form-item-wrapper.vue'
+  import emitter from '@/utils/vform3/emitter'
+  import i18n, {translate} from "@/utils/vform3/i18n";
+  import {deepClone, evalFn} from "@/utils/vform3/util";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
-  import SvgIcon from "@/components/svg-icon/index";
+  import SvgIcon from "@/components/svg-icon/index.vue";
 
   let selectFileText = "'" + translate('render.hint.selectFile') + "'"
 
@@ -277,14 +277,13 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../../styles/global.scss"; /* form-item-wrapper已引入，还需要重复引入吗？ */
 
   .full-width-input {
     width: 100% !important;
   }
 
   .dynamicPseudoAfter :deep(.el-upload.el-upload--text) {
-    color: $--color-primary;
+    color: var(--color-primary);
     font-size: 12px;
     .el-icon-plus:after {
       content: var(--select-file-action);
@@ -309,7 +308,7 @@
     font-size: 12px;
 
     .file-action {
-      color: $--color-primary;
+      color: var(--color-primary);
       margin-left: 5px;
       margin-right: 5px;
       cursor: pointer;

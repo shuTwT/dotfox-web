@@ -1,4 +1,4 @@
-import emitter from "@/utils/emitter";
+import emitter from "@/utils/vform3/emitter";
 //import eventBus from "@/utils/event-bus";
 
 export default {

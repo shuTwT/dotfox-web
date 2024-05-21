@@ -10,6 +10,7 @@ import { useElementPlus } from "@/plugins/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
 import Table from "@pureadmin/table";
+import Draggable from '@/../lib/vuedraggable/dist/vuedraggable.umd.js'
 // import PureDescriptions from "@pureadmin/descriptions";
 
 // 引入重置样式
@@ -41,6 +42,7 @@ app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);
 app.component("FontIcon", FontIcon);
 
+app.component('draggable', Draggable)
 // 全局注册按钮级别权限组件
 import { Auth } from "@/components/ReAuth";
 app.component("Auth", Auth);

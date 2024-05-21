@@ -134,7 +134,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../../styles/global.scss";
 
   .design-time-bottom-margin {
     margin-bottom: 5px;
@@ -150,7 +149,7 @@
       right: -2px;
       height: 22px;
       line-height: 22px;
-      background: $--color-primary;
+      background: var(--color-primary);
       z-index: 9;
 
       i {
@@ -181,7 +180,7 @@
 
       &:hover {
         //opacity: 1;
-        background: $--color-primary;
+        background: var(--color-primary);
       }
     }
   }
@@ -204,6 +203,6 @@
   }
 
   .el-form-item.selected, .static-content-item.selected {
-    outline: 2px solid $--color-primary;
+    outline: 2px solid var(--color-primary);
   }
 </style>

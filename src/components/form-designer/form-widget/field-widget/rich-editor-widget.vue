@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts">
-  import FormItemWrapper from './form-item-wrapper'
-  import emitter from '@/utils/emitter'
-  import i18n, {translate} from "@/utils/i18n";
-  import {deepClone} from "@/utils/util";
+  import FormItemWrapper from './form-item-wrapper.vue'
+  import emitter from '@/utils/vform3/emitter'
+  import i18n, {translate} from "@/utils/vform3/i18n";
+  import {deepClone} from "@/utils/vform3/util";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
 
   import { Quill, quillEditor } from 'vue3-quill'
@@ -137,7 +137,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../../styles/global.scss"; /* form-item-wrapper已引入，还需要重复引入吗？ */
 
   .full-width-input {
     width: 100% !important;

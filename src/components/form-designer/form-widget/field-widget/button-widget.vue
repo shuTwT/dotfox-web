@@ -82,6 +82,4 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../../styles/global.scss"; //* static-content-wrapper已引入，还需要重复引入吗？ *//
-
 </style>

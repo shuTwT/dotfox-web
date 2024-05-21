@@ -93,16 +93,16 @@
 </template>
 
 <script lang="ts">
-  import CodeEditor from '@/components/code-editor/index'
+  import CodeEditor from '@/components/code-editor/index.vue'
   import PropertyEditors from './property-editor/index'
-  import FormSetting from './form-setting'
+  import FormSetting from './form-setting.vue'
   import WidgetProperties from './propertyRegister'
   import {
     addWindowResizeHandler,
-  } from "@/utils/util"
-  import i18n from "@/utils/i18n"
-  import eventBus from "@/utils/event-bus"
-  import emitter from "@/utils/emitter";
+  } from "@/utils/vform3/util"
+  import i18n from "@/utils/vform3/i18n"
+  import eventBus from "@/utils/vform3/event-bus"
+  import emitter from "@/utils/vform3/emitter";
   import { propertyRegistered } from "@/components/form-designer/setting-panel/propertyRegister";
 
   const {COMMON_PROPERTIES, ADVANCED_PROPERTIES, EVENT_PROPERTIES} = WidgetProperties

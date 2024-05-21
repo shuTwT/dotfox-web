@@ -27,9 +27,9 @@
 
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n"
-  import GridColWidget from "@/components/form-designer/form-widget/container-widget/grid-col-widget/index.vue"
+  import GridColWidget from "@/components/form-designer/form-widget/container-widget/grid-col-widget.vue"
   import containerMixin from "@/components/form-designer/form-widget/container-widget/containerMixin";
-  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper/index.vue";
+  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper.vue";
   import refMixinDesign from "@/components/form-designer/refMixinDesign"
 
   export default {
@@ -88,7 +88,7 @@
   }
 
   .grid-container.selected, .grid-cell.selected {
-    outline: 2px solid $--color-primary !important;
+    outline: 2px solid var(--color-primary) !important;
   }
 
 </style>

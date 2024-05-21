@@ -36,7 +36,6 @@
 
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n"
-  //import Draggable from 'vuedraggable'
   import {deepClone} from "@/utils/vform3/util";
 
   export default {
@@ -44,7 +43,6 @@
     componentName: 'PropertyEditor',
     mixins: [i18n],
     components: {
-      //Draggable,
     },
     props: {
       designer: Object,
@@ -115,7 +113,7 @@
 
     li.ghost {
       background: #fff;
-      border: 2px dotted $--color-primary;
+      border: 2px dotted var(--color-primary);
     }
   }
 

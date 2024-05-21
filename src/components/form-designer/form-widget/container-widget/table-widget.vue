@@ -36,8 +36,8 @@
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n"
   import containerMixin from "@/components/form-designer/form-widget/container-widget/containerMixin"
-  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper/index.vue"
-  import TableCellWidget from "@/components/form-designer/form-widget/container-widget/table-cell-widget/index.vue"
+  import ContainerWrapper from "@/components/form-designer/form-widget/container-widget/container-wrapper.vue"
+  import TableCellWidget from "@/components/form-designer/form-widget/container-widget/table-cell-widget.vue"
   import refMixinDesign from "@/components/form-designer/refMixinDesign"
 
   export default {
@@ -110,7 +110,7 @@
   }
 
   .table-container.selected {
-    outline: 2px solid $--color-primary !important;
+    outline: 2px solid var(--color-primary) !important;
   }
 
 </style>

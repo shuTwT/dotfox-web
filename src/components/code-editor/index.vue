@@ -18,7 +18,7 @@
   import 'ace-builds/src-min-noconflict/mode-json' //
   import 'ace-builds/src-min-noconflict/mode-css' //
   import 'ace-builds/src-min-noconflict/ext-language_tools'
-  import {ACE_BASE_PATH} from "@/utils/config";
+  import {ACE_BASE_PATH} from "@/utils/vform3/config";
 
   export default {
     name: 'CodeEditor',

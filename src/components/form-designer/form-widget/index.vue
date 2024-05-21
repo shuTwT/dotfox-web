@@ -32,10 +32,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import '@/components/form-designer/form-widget/container-widget/index'
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
-  import i18n from "@/utils/i18n"
+  import i18n from "@/utils/vform3/i18n"
 
   export default {
     name: "VFormWidget",
@@ -232,9 +232,9 @@
       }
     }
 
-    .el-form.PC-layout {
-      //
-    }
+    // .el-form.PC-layout {
+    //   //
+    // }
 
     .el-form.Pad-layout {
       margin: 0 auto;

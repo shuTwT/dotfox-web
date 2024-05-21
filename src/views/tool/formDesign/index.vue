@@ -5,7 +5,7 @@ defineOptions({
   name: "formDesign"
 });
 const globalDsv = ref({
-  testApiHost:"",
+  testApiHost:"http://www.test.com/api",
   testPort:8080
 })
 </script>

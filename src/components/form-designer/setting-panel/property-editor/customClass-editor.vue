@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n";
-  import {deepClone} from "@/utils/util";
+  import {deepClone} from "@/utils/vform3/util";
 
   export default {
     name: "customClass-editor",

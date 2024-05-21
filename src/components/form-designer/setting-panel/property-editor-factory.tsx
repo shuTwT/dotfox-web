@@ -1,5 +1,5 @@
-import {translate} from "@/utils/i18n"
-import emitter from '@/utils/emitter'
+import {translate} from "@/utils/vform3/i18n"
+import emitter from '@/utils/vform3/emitter'
 
 export const createInputTextEditor = function (propName, propLabelKey) {
   return {
@@ -67,7 +67,7 @@ export const createCheckboxGroupEditor = function (propName, propLabelKey, confi
           <el-checkbox-group v-model={this.optionModel[propName]}>
             {
               configs.optionItems.map(item => {
-                return <el-checkbox label={item.value}>{item.label}</el-checkbox>
+                return <el-checkbox label={item.value} value={item.value}>{item.label}</el-checkbox>
               })
             }
           </el-checkbox-group>
@@ -89,7 +89,7 @@ export const createRadioGroupEditor = function (propName, propLabelKey, configs)
           <el-radio-group v-model={this.optionModel[propName]}>
             {
               configs.optionItems.map(item => {
-                return <el-radio label={item.value}>{item.label}</el-radio>
+                return <el-radio label={item.value} value={item.value}>{item.label}</el-radio>
               })
             }
           </el-radio-group>
@@ -110,7 +110,7 @@ export const createRadioButtonGroupEditor = function (propName, propLabelKey, co
             <el-radio-group v-model={this.optionModel[propName]}>
               {
                 configs.optionItems.map(item => {
-                  return <el-radio-button label={item.value}>{item.label}</el-radio-button>
+                  return <el-radio-button label={item.value} value={item.value}>{item.label}</el-radio-button>
                 })
               }
             </el-radio-group>

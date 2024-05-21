@@ -6,7 +6,7 @@
                  v-bind="{group:'optionsGroup', ghostClass: 'ghost', handle: '.drag-option'}">
         <template #item="{ element: option, index: idx }">
           <li>
-            <el-radio :label="option.value">
+            <el-radio :label="option.value" :value="option.value">
               <el-input v-model="option.value" size="small" style="width: 100px"></el-input>
               <el-input v-model="option.label" size="small" style="width: 100px"></el-input>
               <i class="iconfont icon-drag drag-option"></i>
@@ -23,7 +23,7 @@
                  v-bind="{group:'optionsGroup', ghostClass: 'ghost', handle: '.drag-option'}">
         <template #item="{ element: option, index: idx }">
           <li>
-            <el-checkbox :label="option.value">
+            <el-checkbox :label="option.value" :value="option.value">
               <el-input v-model="option.value" size="small" style="width: 100px"></el-input>
               <el-input v-model="option.label" size="small" style="width: 100px"></el-input>
               <i class="iconfont icon-drag drag-option"></i>
@@ -85,8 +85,8 @@
 </template>
 
 <script lang="ts">
-  import CodeEditor from '@/components/code-editor/index'
-  import i18n from "@/utils/i18n";
+  import CodeEditor from '@/components/code-editor/index.vue'
+  import i18n from "@/utils/vform3/i18n";
 
   export default {
     name: "OptionItemsSetting",
@@ -232,7 +232,7 @@
 
   li.ghost{
     background: #fff;
-    border: 2px dotted $--color-primary;
+    border: 2px dotted var(--color-primary);
   }
 
   .drag-option {

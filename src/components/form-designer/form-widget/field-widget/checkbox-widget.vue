@@ -12,6 +12,7 @@
       </template>
       <template v-else>
         <el-checkbox v-for="(item, index) in field.options.optionItems" :key="index" :label="item.value"
+                      :value="item.value"
                      :disabled="item.disabled" :border="field.options.border"
                      :style="{display: field.options.displayStyle}">{{item.label}}</el-checkbox>
       </template>
@@ -20,9 +21,9 @@
 </template>
 
 <script lang="ts">
-  import FormItemWrapper from './form-item-wrapper'
-  import emitter from '@/utils/emitter'
-  import i18n, {translate} from "@/utils/i18n";
+  import FormItemWrapper from './form-item-wrapper.vue'
+  import emitter from '@/utils/vform3/emitter'
+  import i18n, {translate} from "@/utils/vform3/i18n";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
 
   export default {
@@ -99,6 +100,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../../styles/global.scss"; /* form-item-wrapper已引入，还需要重复引入吗？ */
 
 </style>

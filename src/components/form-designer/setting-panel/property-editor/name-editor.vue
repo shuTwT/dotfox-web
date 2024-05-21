@@ -20,8 +20,8 @@
 
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n"
-  import {isEmptyStr} from "@/utils/util"
-  import SvgIcon from "@/components/svg-icon/index";
+  import {isEmptyStr} from "@/utils/vform3/util"
+  import SvgIcon from "@/components/svg-icon/index.vue";
 
   export default {
     name: "name-editor",

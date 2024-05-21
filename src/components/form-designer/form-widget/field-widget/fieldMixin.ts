@@ -1,5 +1,5 @@
-import { deepClone } from "@/utils/util";
-import FormValidators from "@/utils/validators";
+import { deepClone } from "@/utils/vform3/util";
+import FormValidators from "@/utils/vform3/validators";
 //import eventBus from "@/utils/event-bus";
 
 export default {

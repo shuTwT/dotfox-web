@@ -11,15 +11,15 @@ import {
   generateId,
   getDefaultFormConfig,
   overwriteObj
-} from "@/utils/util";
+} from "@/utils/vform3/util";
 import {
   containers,
   advancedFields,
   basicFields,
   customFields
 } from "@/components/form-designer/widget-panel/widgetsConfig.js";
-import { VARIANT_FORM_VERSION } from "@/utils/config";
-import eventBus from "@/utils/event-bus";
+import { VARIANT_FORM_VERSION } from "@/utils/vform3/config";
+import eventBus from "@/utils/vform3/event-bus";
 
 export function createDesigner(vueInstance) {
   let defaultFormConfig = deepClone(getDefaultFormConfig());

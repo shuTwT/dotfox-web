@@ -1,7 +1,7 @@
-import {isNotNull} from "@/utils/util";
-import {genVue2JS} from "@/utils/vue2js-generator";
-import {beautifierOpts} from "@/utils/beautifierLoader";
-import {genVue3JS} from "@/utils/vue3js-generator";
+import {isNotNull} from "./util";
+import {genVue2JS} from "./vue2js-generator";
+import {beautifierOpts} from "./beautifierLoader";
+import {genVue3JS} from "./vue3js-generator";
 
 export function buildClassAttr(ctn, defaultClass) {
   const cop = ctn.options

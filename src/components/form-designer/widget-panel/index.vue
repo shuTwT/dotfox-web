@@ -111,7 +111,7 @@
     name: "FieldPanel",
     mixins: [i18n],
     components: {
-      SvgIcon
+      SvgIcon,
     },
     props: {
       designer: Object,
@@ -350,10 +350,10 @@
 
         .container-widget-item:hover, .field-widget-item:hover {
           background: #F1F2F3;
-          border-color: $--color-primary;
+          border-color: var(--color-primary);
 
           .color-svg-icon {
-            color: $--color-primary;
+            color: var(--color-primary);
           }
         }
 

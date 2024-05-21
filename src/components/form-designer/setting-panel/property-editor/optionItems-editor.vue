@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import i18n from "@/utils/vform3/i18n"
-  import OptionItemsSetting from "@/components/form-designer/setting-panel/option-items-setting"
+  import OptionItemsSetting from "@/components/form-designer/setting-panel/option-items-setting.vue"
 
   export default {
     name: "optionItems-editor",
