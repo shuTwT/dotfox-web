@@ -10,25 +10,24 @@
 
 <template>
   <div class="container-wrapper" :class="[customClass]">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: "container-item-wrapper",
-    props: {
-      widget: Object,
-    },
-    computed: {
-      customClass() {
-        return !!this.widget.options.customClass ? this.widget.options.customClass.join(' ') : ''
-      },
-
+export default {
+  name: "container-item-wrapper",
+  props: {
+    widget: Object
+  },
+  computed: {
+    customClass() {
+      return !!this.widget.options.customClass
+        ? this.widget.options.customClass.join(" ")
+        : "";
     }
   }
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

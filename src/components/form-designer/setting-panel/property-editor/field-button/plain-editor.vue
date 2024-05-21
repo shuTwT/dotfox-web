@@ -1,24 +1,21 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.plain')">
-    <el-switch v-model="optionModel.plain"></el-switch>
+    <el-switch v-model="optionModel.plain" />
   </el-form-item>
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/vform3/i18n"
+import i18n from "@/utils/vform3/i18n";
 
-  export default {
-    name: "plain-editor",
-    mixins: [i18n],
-    props: {
-      designer: Object,
-      selectedWidget: Object,
-      optionModel: Object,
-    },
-
+export default {
+  name: "plain-editor",
+  mixins: [i18n],
+  props: {
+    designer: Object,
+    selectedWidget: Object,
+    optionModel: Object
   }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

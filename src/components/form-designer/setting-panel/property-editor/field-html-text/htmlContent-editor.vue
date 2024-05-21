@@ -1,30 +1,33 @@
 <template>
   <div>
-    <el-form-item :label="i18nt('designer.setting.htmlContent')">
-    </el-form-item>
+    <el-form-item :label="i18nt('designer.setting.htmlContent')" />
     <el-form-item label-width="0">
-      <el-input type="textarea" v-model="optionModel.htmlContent" :rows="5" class="html-content-editor"></el-input>
+      <el-input
+        v-model="optionModel.htmlContent"
+        type="textarea"
+        :rows="5"
+        class="html-content-editor"
+      />
     </el-form-item>
   </div>
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/vform3/i18n"
+import i18n from "@/utils/vform3/i18n";
 
-  export default {
-    name: "htmlContent-editor",
-    mixins: [i18n],
-    props: {
-      designer: Object,
-      selectedWidget: Object,
-      optionModel: Object,
-    },
+export default {
+  name: "htmlContent-editor",
+  mixins: [i18n],
+  props: {
+    designer: Object,
+    selectedWidget: Object,
+    optionModel: Object
   }
+};
 </script>
 
 <style scoped>
-  .html-content-editor {
-    font-size: 13px;
-  }
-
+.html-content-editor {
+  font-size: 13px;
+}
 </style>

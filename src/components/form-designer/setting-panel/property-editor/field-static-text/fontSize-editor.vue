@@ -1,23 +1,21 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.fontSize')">
-    <el-input v-model="optionModel.fontSize"></el-input>
+    <el-input v-model="optionModel.fontSize" />
   </el-form-item>
 </template>
 
 <script lang="ts">
-  import i18n from "@/utils/vform3/i18n"
+import i18n from "@/utils/vform3/i18n";
 
-  export default {
-    name: "fontSize-editor",
-    mixins: [i18n],
-    props: {
-      designer: Object,
-      selectedWidget: Object,
-      optionModel: Object,
-    },
+export default {
+  name: "fontSize-editor",
+  mixins: [i18n],
+  props: {
+    designer: Object,
+    selectedWidget: Object,
+    optionModel: Object
   }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
