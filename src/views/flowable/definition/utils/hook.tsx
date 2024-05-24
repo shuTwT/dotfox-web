@@ -83,13 +83,14 @@ export function useDefinition() {
 
   function openDialog(title = "新增", row?: FormItemProps) {
     addDialog({
-      title: `${title}角色`,
+      title: `${title}流程`,
       props: {
         formInline: {
           name: row?.name ?? "",
         }
       },
-      width: "40%",
+      width: "80%",
+      hideFooter:true,
       draggable: true,
       fullscreen: deviceDetection(),
       fullscreenIcon: true,
