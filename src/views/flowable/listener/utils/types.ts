@@ -3,6 +3,10 @@
 interface FormItemProps {
   /** 角色名称 */
   name: string;
+  type: string;
+  eventType: string;
+  valueType: string;
+  value: string;
 }
 interface FormProps {
   formInline: FormItemProps;

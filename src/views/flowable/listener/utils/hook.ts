@@ -2,7 +2,7 @@ import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import { PaginationProps } from "@pureadmin/table";
 import { deviceDetection } from "@pureadmin/utils";
-import { h, reactive, ref } from "vue";
+import { h, onMounted, reactive, ref } from "vue";
 import { FormItemProps } from "./types";
 import editForm from "../form.vue"
 
@@ -89,14 +89,17 @@ export function useExpression(){
 
     function openDialog(title = "新增", row?: FormItemProps) {
       addDialog({
-        title: `${title}流程`,
+        title: `${title}流程监听`,
         props: {
           formInline: {
             name: row?.name ?? "",
+            type: row?.type ?? "",
+            eventType: row?.eventType ?? "",
+            valueType: row?.valueType ?? "0",
+            value: row?.value ?? ""
           }
         },
-        width: "80%",
-        hideFooter:true,
+        width: "40%",
         draggable: true,
         fullscreen: deviceDetection(),
         fullscreenIcon: true,
@@ -145,6 +148,10 @@ export function useExpression(){
     function handleSelectionChange(val) {
       console.log("handleSelectionChange", val);
     }
+
+    onMounted(()=>{
+      onSearch();
+    })
 
 
   return {

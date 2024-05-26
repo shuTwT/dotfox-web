@@ -5,6 +5,9 @@ import type { FormItemProps } from "./types";
 import { getKeyList, deviceDetection } from "@pureadmin/utils";
 import { addDialog } from "@/components/ReDialog";
 import type { PaginationProps } from "@pureadmin/table";
+import {getDefinitionList} from "@/api/flowable/definition"
+
+
 export function useDefinition() {
   const form = reactive({
     name: "",
@@ -55,9 +58,8 @@ export function useDefinition() {
 
   async function onSearch() {
     loading.value = true;
-    //const { data } = await getFlowableDefinitionsList(toRaw(form));
-    const data = { list: [], total: 0, pageSize: 10, currentPage: 0 }
-    dataList.value = data.list;
+    const { data } = await getDefinitionList(toRaw(form));
+    dataList.value = data.records;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
     pagination.currentPage = data.currentPage;
@@ -140,7 +142,9 @@ export function useDefinition() {
     console.log("handleSelectionChange", val);
   }
 
-
+  onMounted(()=>{
+    onSearch();
+  })
 
   return {
     form,

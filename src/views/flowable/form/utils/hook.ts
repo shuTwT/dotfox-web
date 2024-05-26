@@ -2,9 +2,10 @@ import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import { PaginationProps } from "@pureadmin/table";
 import { deviceDetection } from "@pureadmin/utils";
-import { h, reactive, ref } from "vue";
+import { h, onMounted, reactive, ref, toRaw } from "vue";
 import { FormItemProps } from "./types";
 import editForm from "../form.vue"
+import {getFormList} from "@/api/flowable/form";
 
 export function useExpression(){
   const form = reactive({
@@ -57,9 +58,8 @@ export function useExpression(){
 
   async function onSearch() {
     loading.value = true;
-    //const { data } = await getFlowableDefinitionsList(toRaw(form));
-    const data = { list: [], total: 0, pageSize: 10, currentPage: 0 }
-    dataList.value = data.list;
+    const { data } = await getFormList(toRaw(form));
+    dataList.value = data.records;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
     pagination.currentPage = data.currentPage;
@@ -91,8 +91,7 @@ export function useExpression(){
             name: row?.name ?? "",
           }
         },
-        width: "80%",
-        hideFooter:true,
+        width: "40%",
         draggable: true,
         fullscreen: deviceDetection(),
         fullscreenIcon: true,
@@ -141,6 +140,10 @@ export function useExpression(){
     function handleSelectionChange(val) {
       console.log("handleSelectionChange", val);
     }
+
+    onMounted(()=>{
+      onSearch();
+    })
 
 
   return {

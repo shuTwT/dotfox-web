@@ -10,7 +10,7 @@ const activeKey = ref(noticesData[0]?.key);
 
 notices.value.map(v => (noticesNum.value += v.list.length));
 const handleNoticeUpdate = ({ data }) => {
-  console.log(data);
+  //console.log(data);
 };
 emitter.on("noticeEventSource", handleNoticeUpdate);
 onBeforeUnmount(() => {

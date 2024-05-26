@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ReCalendar from "@/components/ReCalendar";
 import userAvatar from "@/assets/user.jpg";
 defineOptions({
   name: "Welcome"
@@ -6,23 +7,39 @@ defineOptions({
 </script>
 
 <template>
-  <el-row>
-    <el-col :span="24">
-      <el-card class="page-header" :body-style="{ display: 'flex' }">
-        <template #default>
-          <el-avatar
-            class="page-header__avatar"
-            :src="userAvatar"
-            size="large"
-          />
-          <div class="page-header__tips">
-            <div class="page-header__tips-title">早上好</div>
-            <div class="page-header__tips-description" />
-          </div>
-        </template>
-      </el-card>
-    </el-col>
-  </el-row>
+  <div>
+    <el-row>
+      <el-col :span="24">
+        <el-card class="page-header" :body-style="{ display: 'flex' }">
+          <template #default>
+            <el-avatar
+              class="page-header__avatar"
+              :src="userAvatar"
+              size="large"
+            />
+            <div class="page-header__tips">
+              <div class="page-header__tips-title">早上好</div>
+              <div class="page-header__tips-description" />
+            </div>
+          </template>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row :gutter="24" style="margin-top: 10px;">
+      <el-col :lg="16">
+        <el-card class="bar-card">
+          <template #header>
+            <div class="bar-card-header">
+              <span class="bar-card-header-title">工作日历</span>
+            </div>
+          </template>
+          <template #default>
+            <ReCalendar />
+          </template>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -41,5 +58,17 @@ defineOptions({
   min-height: 20px;
   font-size: 14px;
   color: #808695;
+}
+.bar-card {
+  .bar-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bar-card-header-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 </style>
