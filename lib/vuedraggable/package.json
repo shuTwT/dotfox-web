@@ -1,27 +1,4 @@
 {
-  "_from": "vuedraggable@^4.1.0",
-  "_id": "vuedraggable@4.1.0",
-  "_inBundle": false,
-  "_integrity": "sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==",
-  "_location": "/vuedraggable",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "range",
-    "registry": true,
-    "raw": "vuedraggable@^4.1.0",
-    "name": "vuedraggable",
-    "escapedName": "vuedraggable",
-    "rawSpec": "^4.1.0",
-    "saveSpec": null,
-    "fetchSpec": "^4.1.0"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/vuedraggable/-/vuedraggable-4.1.0.tgz",
-  "_shasum": "edece68adb8a4d9e06accff9dfc9040e66852270",
-  "_spec": "vuedraggable@^4.1.0",
-  "_where": "D:\\dev2021\\vform-next\\variant-form3-vite",
   "browserslist": [
     "> 1%",
     "last 2 versions",
