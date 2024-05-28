@@ -73,8 +73,8 @@
     "nested"
   ],
   "license": "MIT",
-  "main": "dist/vuedraggable.umd.min.js",
-  "module": "dist/vuedraggable.umd.js",
+  "main": "lib/vuedraggable.umd.min.js",
+  "module": "lib/vuedraggable.umd.js",
   "name": "vuedraggable",
   "peerDependencies": {
     "vue": "^3.0.1"

@@ -10,7 +10,7 @@ import { useElementPlus } from "@/plugins/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
 
 import Table from "@pureadmin/table";
-import Draggable from "@/../lib/vuedraggable/dist/vuedraggable.umd.js";
+import * as Draggable from "@/../lib/vuedraggable/dist/vuedraggable.umd.js";
 // import PureDescriptions from "@pureadmin/descriptions";
 
 // 引入重置样式

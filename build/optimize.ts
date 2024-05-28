@@ -20,7 +20,7 @@ const include = [
   "@pureadmin/utils",
   "responsive-storage",
   "quill",
-  "@/../lib/vuedraggable/dist/vuedraggable.umd.js"
+  "@/../lib/vuedraggable/lib/vuedraggable.umd.js"
 ];
 
 /**
