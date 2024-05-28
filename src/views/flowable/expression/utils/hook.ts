@@ -5,7 +5,7 @@ import { deviceDetection } from "@pureadmin/utils";
 import { h, onMounted, reactive, ref, toRaw } from "vue";
 import { FormItemProps } from "./types";
 import editForm from "../form.vue";
-import {getListenerList} from "@/api/flowable/listener";
+import { expressionList, addExpression, editExpression, removeExpression} from "@/api/flowable/expression";
 
 export function useExpression(){
   const form = reactive({
@@ -50,7 +50,7 @@ export function useExpression(){
 
   async function onSearch() {
     loading.value = true;
-    const { data } = await getListenerList(toRaw(form));
+    const { data } = await expressionList(toRaw(form));
     dataList.value = data.list;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
@@ -84,7 +84,6 @@ export function useExpression(){
           }
         },
         width: "40%",
-        hideFooter:true,
         draggable: true,
         fullscreen: deviceDetection(),
         fullscreenIcon: true,
@@ -105,11 +104,15 @@ export function useExpression(){
               console.log("curData", curData);
               // 表单规则校验通过
               if (title === "新增") {
-                // 实际开发先调用新增接口，再进行下面操作
-                chores();
+                addExpression(curData).then(()=>{
+                  // 实际开发先调用新增接口，再进行下面操作
+                  chores();
+                })
               } else {
-                // 实际开发先调用修改接口，再进行下面操作
-                chores();
+                editExpression(curData).then(()=>{
+                  // 实际开发先调用修改接口，再进行下面操作
+                  chores();
+                })
               }
             }
           });

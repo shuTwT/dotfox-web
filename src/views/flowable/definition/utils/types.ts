@@ -2,7 +2,7 @@
 
 interface FormItemProps {
   /** 角色名称 */
-  name: string;
+  xml: string;
 }
 interface FormProps {
   formInline: FormItemProps;

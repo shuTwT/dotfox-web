@@ -2,9 +2,10 @@ import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import { PaginationProps } from "@pureadmin/table";
 import { deviceDetection } from "@pureadmin/utils";
-import { h, onMounted, reactive, ref } from "vue";
+import { h, onMounted, reactive, ref, toRaw } from "vue";
 import { FormItemProps } from "./types";
 import editForm from "../form.vue"
+import { getListenerList, createListener, updateListener, deleteListener } from "@/api/flowable/listener";
 
 export function useExpression(){
   const form = reactive({
@@ -24,7 +25,7 @@ export function useExpression(){
 
   const columns: TableColumnList=[
     {
-      label: "表达式编号",
+      label: "编号",
       prop: "id"
     },
     {
@@ -61,9 +62,8 @@ export function useExpression(){
 
   async function onSearch() {
     loading.value = true;
-    //const { data } = await getFlowableDefinitionsList(toRaw(form));
-    const data = { list: [], total: 0, pageSize: 10, currentPage: 0 }
-    dataList.value = data.list;
+    const { data } = await getListenerList(toRaw(form));
+    dataList.value = data.records;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
     pagination.currentPage = data.currentPage;
@@ -120,11 +120,15 @@ export function useExpression(){
               console.log("curData", curData);
               // 表单规则校验通过
               if (title === "新增") {
-                // 实际开发先调用新增接口，再进行下面操作
-                chores();
+                createListener(curData).then(()=>{
+                  // 实际开发先调用新增接口，再进行下面操作
+                  chores();
+                })
               } else {
-                // 实际开发先调用修改接口，再进行下面操作
-                chores();
+                updateListener(curData).then(()=>{
+                  // 实际开发先调用修改接口，再进行下面操作
+                  chores();
+                })
               }
             }
           });
@@ -133,8 +137,11 @@ export function useExpression(){
     }
 
     function handleDelete(row) {
-      message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
-      onSearch();
+      deleteListener(row.id).then(()=>{
+        message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
+        onSearch();
+      })
+
     }
 
     function handleSizeChange(val: number) {

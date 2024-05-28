@@ -8,3 +8,11 @@ export const getListenerList = (params?: object) => {
 export const createListener = (data: object) => {
   return http.request<Result>("post", "/api/flowable/listener", { data });
 };
+
+export const updateListener = (data: object) => {
+  return http.request<Result>("put", "/api/flowable/listener", { data });
+};
+
+export const deleteListener = (id: number) => {
+  return http.request<Result>("delete", "/api/flowable/listener/"+id);
+};

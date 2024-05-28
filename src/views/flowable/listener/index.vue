@@ -83,7 +83,7 @@ import Check from "@iconify-icons/ep/check";
             :icon="useRenderIcon(AddFill)"
             @click="openDialog()"
           >
-            新增表达式
+            新增监听
           </el-button>
         </template>
         <template v-slot="{ size, dynamicColumns }">

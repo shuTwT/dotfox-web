@@ -9,6 +9,7 @@ type Events = {
   logoChange: boolean;
   changLayoutRoute: string;
   noticeEventSource: object;
+  saveDefinitionXml: string;
 };
 
 export const emitter: Emitter<Events> = mitt<Events>();

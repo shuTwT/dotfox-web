@@ -1,8 +1,18 @@
 <script setup lang="ts">
 // https://github.com/moon-studio/vite-vue-bpmn-process
 import { ElMessage } from "element-plus";
+import { formRules } from "./utils/rule"
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { FormProps } from "./utils/types";
 
-import { nextTick, onMounted, ref } from "vue";
+const props = withDefaults(defineProps<FormProps>(), {
+  formInline: () => ({
+    xml: "",
+  })
+});
+
+const ruleFormRef = ref();
+const newFormInline = ref(props.formInline);
 
 const iframeWindow = ref();
 const iframeRef = ref();
@@ -35,15 +45,42 @@ const doSave=()=>{
 
 }
 
+const handleMessage=(e)=>{
+  if(e.origin==='http://vue.shugram.com'){
+    if(typeof e.data==='string'){
+      try{
+        const data=JSON.parse(e.data)
+        if(data.origin==='bpmn-process'&&data.type==='save'){
+          const xml = data.xml
+          newFormInline.value.xml=xml
+        }
+      }catch(error){
+        console.error(error)
+      }
+    }
+  }
+}
+
 onMounted(() => {
     iframeWindow.value = iframeRef.value.contentWindow;
+    window.addEventListener('message',handleMessage)
 });
+
+onBeforeUnmount(()=>{
+  window.removeEventListener('message',handleMessage)
+})
+
+function getRef() {
+  return ruleFormRef.value;
+}
+
+defineExpose({ getRef });
 </script>
 
 <template>
-  <div>
+  <el-form ref="ruleFormRef" :model="newFormInline" :rules="formRules" label-width="80px">
     <iframe ref="iframeRef" :src="iframeSrc" class="iframe" @load="handleOnload"></iframe>
-  </div>
+  </el-form>
 </template>
 <style scoped>
 .iframe {

@@ -5,7 +5,7 @@ import type { FormItemProps } from "./types";
 import { getKeyList, deviceDetection } from "@pureadmin/utils";
 import { addDialog } from "@/components/ReDialog";
 import type { PaginationProps } from "@pureadmin/table";
-import {getDefinitionList} from "@/api/flowable/definition"
+import { getDefinitionList, createDefinition, updateDefinition} from "@/api/flowable/definition"
 
 
 export function useDefinition() {
@@ -88,11 +88,10 @@ export function useDefinition() {
       title: `${title}流程`,
       props: {
         formInline: {
-          name: row?.name ?? "",
+          xml: row?.xml ?? "",
         }
       },
       width: "80%",
-      hideFooter:true,
       draggable: true,
       fullscreen: deviceDetection(),
       fullscreenIcon: true,
@@ -102,7 +101,7 @@ export function useDefinition() {
         const FormRef = formRef.value.getRef();
         const curData = options.props.formInline as FormItemProps;
         function chores() {
-          message(`您${title}了角色名称为${curData.name}的这条数据`, {
+          message(`您${title}了角色名称为的这条数据`, {
             type: "success"
           });
           done(); // 关闭弹框
@@ -113,11 +112,17 @@ export function useDefinition() {
             console.log("curData", curData);
             // 表单规则校验通过
             if (title === "新增") {
-              // 实际开发先调用新增接口，再进行下面操作
-              chores();
+              createDefinition(curData).then(()=>{
+                // 实际开发先调用新增接口，再进行下面操作
+                chores();
+              })
+
             } else {
-              // 实际开发先调用修改接口，再进行下面操作
-              chores();
+              updateDefinition(curData).then(()=>{
+                // 实际开发先调用修改接口，再进行下面操作
+                chores();
+              })
+
             }
           }
         });

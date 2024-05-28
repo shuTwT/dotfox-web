@@ -5,7 +5,7 @@ import { deviceDetection } from "@pureadmin/utils";
 import { h, onMounted, reactive, ref, toRaw } from "vue";
 import { FormItemProps } from "./types";
 import editForm from "../form.vue"
-import {getFormList} from "@/api/flowable/form";
+import { formList, addForm, updateForm,removeForm} from "@/api/flowable/form";
 
 export function useExpression(){
   const form = reactive({
@@ -58,7 +58,7 @@ export function useExpression(){
 
   async function onSearch() {
     loading.value = true;
-    const { data } = await getFormList(toRaw(form));
+    const { data } = await formList(toRaw(form));
     dataList.value = data.records;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
@@ -112,11 +112,17 @@ export function useExpression(){
               console.log("curData", curData);
               // 表单规则校验通过
               if (title === "新增") {
-                // 实际开发先调用新增接口，再进行下面操作
-                chores();
+                addForm(curData).then(()=>{
+                  // 实际开发先调用新增接口，再进行下面操作
+                  chores();
+                })
+
               } else {
-                // 实际开发先调用修改接口，再进行下面操作
-                chores();
+                updateForm(curData).then(()=>{
+                  // 实际开发先调用修改接口，再进行下面操作
+                  chores();
+                })
+
               }
             }
           });
