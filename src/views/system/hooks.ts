@@ -14,7 +14,7 @@ export function usePublicHooks() {
 
   const tagStyle = computed(() => {
     return (status: number) => {
-      return status == 0
+      return status == 1
         ? {
             "--el-tag-text-color": isDark.value ? "#6abe39" : "#389e0d",
             "--el-tag-bg-color": isDark.value ? "#172412" : "#f6ffed",

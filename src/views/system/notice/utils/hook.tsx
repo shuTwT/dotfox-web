@@ -8,9 +8,9 @@ import { deviceDetection } from "@pureadmin/utils";
 import {
   getSystemNoticeList,
   addSystemNotice,
-  updateSystemNotice,
-  deleteSystemNotice
-} from "@/api/system";
+  editSystemNotice,
+  removeSystemNotice
+} from "@/api/system/notice";
 import { type Ref, reactive, ref, onMounted, h, toRaw } from "vue";
 
 export function useRole(treeRef: Ref) {
@@ -93,7 +93,7 @@ export function useRole(treeRef: Ref) {
   ];
 
   function handleDelete(row) {
-    deleteSystemNotice([row.noticeId]).then(() => {
+    removeSystemNotice([row.noticeId]).then(() => {
       message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
       onSearch();
     });
@@ -169,7 +169,7 @@ export function useRole(treeRef: Ref) {
               });
             } else {
               // 实际开发先调用修改接口，再进行下面操作
-              updateSystemNotice(row.noticeId, curData).then(() => {
+              editSystemNotice(row.noticeId, curData).then(() => {
                 chores();
               });
             }

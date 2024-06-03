@@ -94,12 +94,12 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
     },
     {
       label: "用户名称",
-      prop: "userName",
+      prop: "username",
       minWidth: 130
     },
     {
       label: "用户昵称",
-      prop: "nickName",
+      prop: "nickname",
       minWidth: 130
     },
     {
@@ -137,8 +137,8 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
           size={scope.props.size === "small" ? "small" : "default"}
           loading={switchLoadMap.value[scope.index]?.loading}
           v-model={scope.row.status}
-          active-value={"0"}
-          inactive-value={"1"}
+          active-value={"1"}
+          inactive-value={"0"}
           active-text="已启用"
           inactive-text="已停用"
           inline-prompt
@@ -316,8 +316,8 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
           title,
           higherDeptOptions: formatHigherDeptOptions(higherDeptOptions.value),
           parentId: row?.dept.deptId ?? 0,
-          nickName: row?.nickName ?? "",
-          userName: row?.userName ?? "",
+          nickName: row?.nickname ?? "",
+          userName: row?.username ?? "",
           password: row?.password ?? "",
           phonenumber: row?.phonenumber ?? "",
           email: row?.email ?? "",
@@ -336,7 +336,7 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
         const FormRef = formRef.value.getRef();
         const curData = options.props.formInline as FormItemProps;
         function chores() {
-          message(`您${title}了用户名称为${curData.userName}的这条数据`, {
+          message(`您${title}了用户名称为${curData.username}的这条数据`, {
             type: "success"
           });
           done(); // 关闭弹框
@@ -469,11 +469,11 @@ export function useUser(tableRef: Ref, treeRef: Ref) {
     // 选中的角色列表
     const ids = (await getRoleIds({ userId: row.userId })).data ?? [];
     addDialog({
-      title: `分配 ${row.userName} 用户的角色`,
+      title: `分配 ${row.username} 用户的角色`,
       props: {
         formInline: {
-          username: row?.userName ?? "",
-          nickname: row?.nickName ?? "",
+          username: row?.username ?? "",
+          nickname: row?.nickname ?? "",
           roleOptions: roleOptions.value ?? [],
           ids
         }

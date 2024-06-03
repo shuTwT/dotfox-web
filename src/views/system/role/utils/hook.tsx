@@ -8,7 +8,8 @@ import { addDialog } from "@/components/ReDialog";
 import type { FormItemProps } from "../utils/types";
 import type { PaginationProps } from "@pureadmin/table";
 import { getKeyList, deviceDetection } from "@pureadmin/utils";
-import { getRoleList, getRoleMenu, getRoleMenuIds } from "@/api/system";
+import { getRoleMenu, getRoleMenuIds } from "@/api/system";
+import { getRoleList, addRole, editRole, removeRole } from "@/api/system/role";
 import { type Ref, reactive, ref, onMounted, h, toRaw, watch } from "vue";
 
 export function useRole(treeRef: Ref) {
@@ -61,8 +62,8 @@ export function useRole(treeRef: Ref) {
           size={scope.props.size === "small" ? "small" : "default"}
           loading={switchLoadMap.value[scope.index]?.loading}
           v-model={scope.row.status}
-          active-value={"0"}
-          inactive-value={"1"}
+          active-value={"1"}
+          inactive-value={"0"}
           active-text="已启用"
           inactive-text="已停用"
           inline-prompt
@@ -144,8 +145,10 @@ export function useRole(treeRef: Ref) {
   }
 
   function handleDelete(row) {
-    message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
-    onSearch();
+    removeRole(row.id).then(() => {
+      message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
+      onSearch();
+    });
   }
 
   function handleSizeChange(val: number) {
@@ -211,10 +214,14 @@ export function useRole(treeRef: Ref) {
             // 表单规则校验通过
             if (title === "新增") {
               // 实际开发先调用新增接口，再进行下面操作
-              chores();
+              addRole(curData).then(() => {
+                chores();
+              });
             } else {
               // 实际开发先调用修改接口，再进行下面操作
-              chores();
+              editRole(row.id, curData).then(() => {
+                chores();
+              });
             }
           }
         });

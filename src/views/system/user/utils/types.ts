@@ -4,8 +4,8 @@ interface FormItemProps {
   title: string;
   higherDeptOptions: Record<string, unknown>[];
   parentId: number;
-  nickName: string;
-  userName: string;
+  nickname: string;
+  username: string;
   password: string;
   phonenumber: string | number;
   email: string;

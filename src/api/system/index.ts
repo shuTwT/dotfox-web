@@ -16,11 +16,6 @@ export const getRoleIds = (data?: object) => {
   return http.request<Result>("post", "/api/system/list-role-ids", { data });
 };
 
-/** 获取系统管理-角色管理列表 */
-export const getRoleList = (params?: object) => {
-  return http.request<TableResult>("get", "/api/system/role", { params });
-};
-
 /** 获取系统管理-菜单管理列表 */
 export const getMenuList = (params?: object) => {
   return http.request<Result>("get", "/api/system/menu", { params });
@@ -43,11 +38,6 @@ export const updateMenu = (menuId?: number, data?: object) => {
 /** 删除系统管理-菜单 */
 export const deleteMenu = (menuId?: number) => {
   return http.request<Result>("delete", "/api/system/menu/" + menuId);
-};
-
-/** 获取系统管理-部门管理列表 */
-export const getDeptList = (params?: object) => {
-  return http.request<Result>("get", "/api/system/dept", { params });
 };
 
 /** 获取系统监控-在线用户列表 */
@@ -95,37 +85,6 @@ export const getRoleMenu = (params?: object) => {
 /** 获取角色管理-权限-菜单权限-根据角色 id 查对应菜单 */
 export const getRoleMenuIds = (data?: object) => {
   return http.request<Result>("post", "/api/system/role-menu-ids", { data });
-};
-
-/** 获取系统通知列表 */
-export const getSystemNoticeList = (params?: object) => {
-  return http.request<Result>("get", "/api/system/notice", {
-    params
-  });
-};
-
-/** 添加系统通知 */
-export const addSystemNotice = (data: object) => {
-  return http.request<Result>("post", "/api/system/notice", {
-    data
-  });
-};
-
-/** 修改系统通知 */
-export const updateSystemNotice = (noticeId: number, data: any) => {
-  return http.request<Result>("put", `/api/system/notice/${noticeId}`, {
-    data
-  });
-};
-
-/** 删除系统通知 */
-export const deleteSystemNotice = (data: number[]) => {
-  return http.request<Result>("delete", "/api/system/notice", {
-    params: {
-      // 需要将数组转换为字符串  否则Axios会将参数变成 noticeIds[0]:1  noticeIds[1]:2 这种格式，后端接收参数不成功
-      noticeIds: data.toString()
-    }
-  });
 };
 
 export const getSystemDictTypeList = (params: object) => {

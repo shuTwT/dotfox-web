@@ -3,6 +3,7 @@
 interface FormItemProps {
   /** 角色名称 */
   name: string;
+  id?: number;
   expression: string;
   remark: string;
 }
