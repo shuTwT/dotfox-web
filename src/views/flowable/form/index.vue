@@ -121,7 +121,7 @@ import Check from "@iconify-icons/ep/check";
                 修改
               </el-button>
               <el-popconfirm
-                :title="`是否确认删除表达式名称为${row.name}的这条数据`"
+                :title="`是否确认删除表单名称为${row.formName}的这条数据`"
                 @confirm="handleDelete(row)"
               >
                 <template #reference>

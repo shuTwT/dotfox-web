@@ -26,11 +26,11 @@ export function useExpression(){
   const columns: TableColumnList=[
     {
       label: "表单编号",
-      prop: "id"
+      prop: "formId"
     },
     {
       label: "表单名称",
-      prop: "name"
+      prop: "formName"
     },
     {
       label: "分类",
@@ -88,7 +88,8 @@ export function useExpression(){
         title: `${title}流程`,
         props: {
           formInline: {
-            name: row?.name ?? "",
+            formName: row?.formName ?? "",
+            category: row?.category ?? "",
           }
         },
         width: "40%",
@@ -101,7 +102,7 @@ export function useExpression(){
           const FormRef = formRef.value.getRef();
           const curData = options.props.formInline as FormItemProps;
           function chores() {
-            message(`您${title}了角色名称为${curData.name}的这条数据`, {
+            message(`您${title}了角色名称为${curData.formName}的这条数据`, {
               type: "success"
             });
             done(); // 关闭弹框
@@ -118,7 +119,7 @@ export function useExpression(){
                 })
 
               } else {
-                updateForm(curData).then(()=>{
+                updateForm(row.formId,curData).then(()=>{
                   // 实际开发先调用修改接口，再进行下面操作
                   chores();
                 })
@@ -131,8 +132,13 @@ export function useExpression(){
     }
 
     function handleDelete(row) {
-      message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
-      onSearch();
+      removeForm(row.formId).then((res)=>{
+        if(res.code===200){
+          message(`您删除了角色名称为${row.formName}的这条数据`, { type: "success" });
+          onSearch();
+        }
+      })
+
     }
 
     function handleSizeChange(val: number) {

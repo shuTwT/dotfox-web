@@ -9,8 +9,8 @@ export const createDefinition = (data: object) => {
   return http.request<Result>("post", "/api/flowable/definition", { data });
 };
 
-export const updateDefinition = (data: object) => {
-  return http.request<Result>("put", "/api/flowable/definition", { data });
+export const updateDefinition = (id: string,data: object) => {
+  return http.request<Result>("put", "/api/flowable/definition/"+id, { data });
 };
 
 export const deleteDefinition = (id: number) => {

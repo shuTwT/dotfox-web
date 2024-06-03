@@ -28,11 +28,6 @@ defineOptions({
     <el-row :gutter="24" style="margin-top: 10px;">
       <el-col :lg="16">
         <el-card class="bar-card">
-          <template #header>
-            <div class="bar-card-header">
-              <span class="bar-card-header-title">工作日历</span>
-            </div>
-          </template>
           <template #default>
             <ReCalendar />
           </template>

@@ -9,8 +9,8 @@ export const addForm = (data: object) => {
   return http.request<Result>("post", "/api/flowable/form", { data });
 };
 
-export const updateForm = (data: object) => {
-  return http.request<Result>("put", "/api/flowable/form", { data });
+export const updateForm = (id: number|string,data: object) => {
+  return http.request<Result>("put", "/api/flowable/form/"+id, { data });
 };
 
 export const removeForm = (id: number) => {

@@ -5,7 +5,7 @@ import { FormProps } from "./utils/types";
 
 const props = withDefaults(defineProps<FormProps>(), {
   formInline: () => ({
-    name: "",
+    formName: "",
     category: "",
     remark: "",
   })
@@ -29,11 +29,11 @@ defineExpose({ getRef });
 
 <template>
   <el-form ref="ruleFormRef" :model="newFormInline" :rules="formRules" label-width="80px">
-    <el-form-item label="表单名称" prop="name">
-      <el-input v-model="newFormInline.name" placeholder="请输入名称" />
+    <el-form-item label="表单名称" prop="formName">
+      <el-input v-model="newFormInline.formName" placeholder="请输入名称" />
     </el-form-item>
     <el-form-item label="分类" prop="category">
-      <el-select v-model="newFormInline.category" placeholder="请选择监听类型">
+      <el-select v-model="newFormInline.category" placeholder="请选择表单分类">
         <el-option
           v-for="dict in formTypeList"
           :key="dict.value"

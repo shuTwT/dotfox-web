@@ -118,7 +118,7 @@ export function useDefinition() {
               })
 
             } else {
-              updateDefinition(curData).then(()=>{
+              updateDefinition(row.id,curData).then(()=>{
                 // 实际开发先调用修改接口，再进行下面操作
                 chores();
               })

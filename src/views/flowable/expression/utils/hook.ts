@@ -51,7 +51,7 @@ export function useExpression(){
   async function onSearch() {
     loading.value = true;
     const { data } = await expressionList(toRaw(form));
-    dataList.value = data.list;
+    dataList.value = data.records;
     pagination.total = data.total;
     pagination.pageSize = data.pageSize;
     pagination.currentPage = data.currentPage;
@@ -77,7 +77,7 @@ export function useExpression(){
 
     function openDialog(title = "新增", row?: FormItemProps) {
       addDialog({
-        title: `${title}流程`,
+        title: `${title}流程表达式`,
         props: {
           formInline: {
             name: row?.name ?? "",

@@ -34,7 +34,7 @@ export function useExpression(){
     },
     {
       label: "监听类型",
-      prop: "listenerType"
+      prop: "type"
     },
     {
       label: "事件类型",
