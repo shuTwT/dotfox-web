@@ -19,8 +19,7 @@ const include = [
   "@vueuse/core",
   "@pureadmin/utils",
   "responsive-storage",
-  "quill",
-  "@/../lib/vuedraggable/lib/vuedraggable.umd.js"
+  "quill"
 ];
 
 /**

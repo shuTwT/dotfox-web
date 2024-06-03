@@ -75,6 +75,7 @@
     "qs": "^6.12.1",
     "responsive-storage": "^2.2.0",
     "sortablejs": "^1.15.2",
+    "vform3-builds": "^3.0.10",
     "vue": "^3.4.27",
     "vue-draggable-plus": "^0.4.1",
     "vue-json-pretty": "^2.4.0",

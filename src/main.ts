@@ -24,6 +24,9 @@ import "element-plus/dist/index.css";
 import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
 
+import VForm3 from "vform3-builds"; //引入VForm3库
+import "vform3-builds/dist/designer.style.css"; //引入VForm3样式
+
 const app = createApp(App);
 
 // 自定义指令
@@ -79,6 +82,7 @@ getPlatformConfig(app).then(async config => {
   app
     .use(MotionPlugin)
     .use(useElementPlus)
+    .use(VForm3)
     .use(Table)
     // .use(PureDescriptions)
     .use(useEcharts);

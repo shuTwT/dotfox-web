@@ -86,6 +86,9 @@ dependencies:
   sortablejs:
     specifier: ^1.15.2
     version: 1.15.2
+  vform3-builds:
+    specifier: ^3.0.10
+    version: 3.0.10
   vue:
     specifier: ^3.4.27
     version: 3.4.27(typescript@5.4.5)
@@ -6508,6 +6511,10 @@ packages:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
     dev: true
+
+  /vform3-builds@3.0.10:
+    resolution: {integrity: sha512-sULNk72Z6NG94X9MMgpBwinaIOYjtl7Bn5jZbV9iZaglSYr2SHm/wpXPAjl8F8OW6SzOOJgIpRek+NvOvN7wsg==}
+    dev: false
 
   /vite-plugin-cdn-import@1.0.1(rollup@4.14.1)(vite@5.2.11):
     resolution: {integrity: sha512-lgjLxgwFSKvJLbqjVBirUZ0rQo00GpUGJzRpgQu8RyBw9LA7jaqG6fUMQzBC9qWmTGabPC3iOzwCcoi7PseRAQ==}
