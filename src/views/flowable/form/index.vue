@@ -19,6 +19,7 @@ const {
   onSearch,
   resetForm,
   openDialog,
+  openDialog2,
   handleDelete,
   handleSizeChange,
   handleCurrentChange,
@@ -32,6 +33,7 @@ import Menu from "@iconify-icons/ep/menu";
 import AddFill from "@iconify-icons/ri/add-circle-line";
 import Close from "@iconify-icons/ep/close";
 import Check from "@iconify-icons/ep/check";
+import View from "@iconify-icons/ep/view";
 </script>
 
 <template>
@@ -110,6 +112,16 @@ import Check from "@iconify-icons/ep/check";
             @page-current-change="handleCurrentChange"
           >
             <template #operation="{ row }">
+              <el-button
+                class="reset-margin"
+                link
+                type="primary"
+                :size="size"
+                :icon="useRenderIcon(View)"
+                @click="openDialog2('设计', row)"
+              >
+                设计
+              </el-button>
               <el-button
                 class="reset-margin"
                 link

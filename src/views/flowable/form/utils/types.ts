@@ -4,9 +4,11 @@ interface FormItemProps {
   /** 角色名称 */
   formName: string;
   formId?: number;
+  formContent?: string;
   category: string;
   remark: string;
 }
+
 interface FormProps {
   formInline: FormItemProps;
 }

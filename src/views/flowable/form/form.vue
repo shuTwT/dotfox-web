@@ -7,15 +7,15 @@ const props = withDefaults(defineProps<FormProps>(), {
   formInline: () => ({
     formName: "",
     category: "",
-    remark: "",
+    formContent: "",
+    remark: ""
   })
 });
 
 const formTypeList = [
-  { label: "测试表单", value: "0"},
-  { label: "办公表单", value: "1"}
-]
-
+  { label: "测试表单", value: "0" },
+  { label: "办公表单", value: "1" }
+];
 
 const ruleFormRef = ref();
 const newFormInline = ref(props.formInline);
@@ -28,7 +28,12 @@ defineExpose({ getRef });
 </script>
 
 <template>
-  <el-form ref="ruleFormRef" :model="newFormInline" :rules="formRules" label-width="80px">
+  <el-form
+    ref="ruleFormRef"
+    :model="newFormInline"
+    :rules="formRules"
+    label-width="80px"
+  >
     <el-form-item label="表单名称" prop="formName">
       <el-input v-model="newFormInline.formName" placeholder="请输入名称" />
     </el-form-item>
@@ -39,15 +44,11 @@ defineExpose({ getRef });
           :key="dict.value"
           :label="dict.label"
           :value="dict.value"
-        ></el-option>
+        />
       </el-select>
     </el-form-item>
-    <el-form-item
-      label="备注"
-      prop="remark"
-    >
-    <el-input v-model="newFormInline.remark" placeholder="请输入名称" />
+    <el-form-item label="备注" prop="remark">
+      <el-input v-model="newFormInline.remark" placeholder="请输入名称" />
     </el-form-item>
-
   </el-form>
 </template>
