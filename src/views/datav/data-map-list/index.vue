@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>test</div>
+  <div>地图管理</div>
 </template>
