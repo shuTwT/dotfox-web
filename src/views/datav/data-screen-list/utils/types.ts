@@ -2,8 +2,8 @@
 
 interface FormItemProps {
   /** 角色名称 */
-  xml: string;
-  id?: string;
+  projectName: string;
+  remark?: string;
 }
 interface FormProps {
   formInline: FormItemProps;

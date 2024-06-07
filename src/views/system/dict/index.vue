@@ -10,38 +10,15 @@ import {
   useResizeObserver
 } from "@pureadmin/utils";
 
-// import Database from "@iconify-icons/ri/database-2-line";
-// import More from "@iconify-icons/ep/more-filled";
 import Delete from "@iconify-icons/ep/delete";
 import EditPen from "@iconify-icons/ep/edit-pen";
 import Refresh from "@iconify-icons/ep/refresh";
-import Menu from "@iconify-icons/ep/menu";
 import AddFill from "@iconify-icons/ri/add-circle-line";
-import Close from "@iconify-icons/ep/close";
-import Check from "@iconify-icons/ep/check";
 
 defineOptions({
   name: "SystemRole"
 });
 
-const iconClass = computed(() => {
-  return [
-    "w-[22px]",
-    "h-[22px]",
-    "flex",
-    "justify-center",
-    "items-center",
-    "outline-none",
-    "rounded-[4px]",
-    "cursor-pointer",
-    "transition-colors",
-    "hover:bg-[#0000000f]",
-    "dark:hover:bg-[#ffffff1f]",
-    "dark:hover:text-[#ffffffd9]"
-  ];
-});
-
-const treeRef = ref();
 const formRef = ref();
 const tableRef = ref();
 const contentRef = ref();
@@ -63,7 +40,7 @@ const {
   handleSizeChange,
   handleCurrentChange,
   handleSelectionChange
-} = useDictType(treeRef);
+} = useDictType();
 
 onMounted(() => {
   useResizeObserver(contentRef, async () => {

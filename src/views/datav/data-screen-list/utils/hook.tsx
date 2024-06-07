@@ -1,19 +1,23 @@
 import {
   projectListApi,
   changeProjectReleaseApi,
-  deleteProjectApi
+  deleteProjectApi,
+  createProjectApi
 } from "@/api/datav/datavScreen";
 import { message } from "@/utils/message";
 import type { PaginationProps } from "@pureadmin/table";
-import { onMounted, reactive, ref, toRaw } from "vue";
-// import { FormItemProps } from "./types";
+import { h, onMounted, reactive, ref, toRaw } from "vue";
 import { ElMessageBox } from "element-plus";
+import type { FormItemProps } from "./types";
+import { deviceDetection } from "@pureadmin/utils";
+import { addDialog } from "@/components/ReDialog";
+import editForm from "../form.vue";
 
 const goviewDeployUrl = "/goview/";
 
 export function useDatavScreenList() {
   const form = reactive({
-    name: "",
+    projectName: "",
     category: ""
   });
   const formRef = ref();
@@ -42,7 +46,46 @@ export function useDatavScreenList() {
     formEl.resetFields();
     onSearch();
   };
-  function openDialog(/**title = "新增", row?: FormItemProps*/) {}
+  function openDialog(title = "新增", row?: FormItemProps) {
+    addDialog({
+      title: `${title}大屏`,
+      props: {
+        formInline: {
+          projectName: row?.projectName ?? ""
+        }
+      },
+      width: "40%",
+      draggable: true,
+      fullscreen: deviceDetection(),
+      fullscreenIcon: true,
+      closeOnClickModal: false,
+      contentRenderer: () => h(editForm, { ref: formRef }),
+      beforeSure: (done, { options }) => {
+        const FormRef = formRef.value.getRef();
+        const curData = options.props.formInline as FormItemProps;
+        function chores() {
+          message(`您${title}了角色名称为${curData.projectName}的这条数据`, {
+            type: "success"
+          });
+          done(); // 关闭弹框
+          onSearch(); // 刷新表格数据
+        }
+        FormRef.validate(valid => {
+          if (valid) {
+            console.log("curData", curData);
+            // 表单规则校验通过
+            if (title === "新增") {
+              createProjectApi(curData).then(() => {
+                // 实际开发先调用新增接口，再进行下面操作
+                chores();
+              });
+            } else {
+            }
+          }
+        });
+      }
+    });
+  }
   function confirmDelete(row) {
     ElMessageBox.confirm("确认删除吗", "提示").then(() => {
       deleteProjectApi({

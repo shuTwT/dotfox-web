@@ -52,9 +52,9 @@ const {
           class="!w-[180px]"
         />
       </el-form-item>
-      <el-form-item label="大屏名称：" prop="name">
+      <el-form-item label="大屏名称：" prop="projectName">
         <el-input
-          v-model="form.name"
+          v-model="form.projectName"
           placeholder="请输入大屏名称"
           clearable
           class="!w-[180px]"

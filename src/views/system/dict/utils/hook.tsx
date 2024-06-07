@@ -4,16 +4,26 @@ import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import type { FormItemProps } from "./types";
 import type { PaginationProps } from "@pureadmin/table";
-import { deviceDetection } from "@pureadmin/utils";
+import { deviceDetection, isEmpty, isString } from "@pureadmin/utils";
 import {
   getSystemDictTypeList,
   updateSystemDictType,
   addSystemDictType,
   deleteSystemDictType
 } from "@/api/system";
-import { type Ref, reactive, ref, onMounted, h, toRaw } from "vue";
+import { reactive, ref, onMounted, h, toRaw } from "vue";
+import {
+  type LocationQueryRaw,
+  type RouteParamsRaw,
+  useRoute,
+  useRouter
+} from "vue-router";
+import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 
-export function useDictType(treeRef: Ref) {
+export function useDictType() {
+  const route = useRoute();
+  const router = useRouter();
+  const getParameter = isEmpty(route.params) ? route.query : route.params;
   const form = reactive({
     dictName: "",
     dictType: "",
@@ -22,10 +32,8 @@ export function useDictType(treeRef: Ref) {
   const curRow = ref();
   const formRef = ref();
   const dataList = ref([]);
-  const treeData = ref([]);
   const isShow = ref(false);
   const loading = ref(true);
-  const isLinkage = ref(false);
   const pagination = reactive<PaginationProps>({
     total: 0,
     pageSize: 10,
@@ -45,7 +53,7 @@ export function useDictType(treeRef: Ref) {
       label: "类型",
       cellRenderer: ({ row }) => (
         <router-link
-          to={"/system/dict-data/index/" + row.dictType}
+          to={"/system/dict-data/" + row.dictType}
           class="link-type text-[#337ab7] hover:text-[#20a0ff] focus:text-[#337ab7] focus:hover:text-[#20a0ff]"
         >
           <span>{row.dictType}</span>
@@ -57,23 +65,23 @@ export function useDictType(treeRef: Ref) {
       cellRenderer: ({ row, props }) => (
         <el-tag
           size={props.size}
-          type={row.status == 1 ? "danger" : null}
+          type={row.status == 0 ? "danger" : null}
           effect="plain"
         >
-          {row.status == 1 ? "关闭" : "正常"}
+          {row.status == 0 ? "关闭" : "正常"}
         </el-tag>
       ),
-      minWidth: 90
+      width: 90
     },
     {
       label: "备注",
       prop: "remark",
-      minWidth: 160
+      width: 160
     },
     {
       label: "创建时间",
       prop: "createTime",
-      minWidth: 160,
+      width: 160,
       formatter: ({ createTime }) =>
         dayjs(createTime).format("YYYY-MM-DD HH:mm:ss")
     },
@@ -87,7 +95,7 @@ export function useDictType(treeRef: Ref) {
 
   function handleDelete(row) {
     deleteSystemDictType([row.dictId]).then(() => {
-      message(`您删除了角色名称为${row.name}的这条数据`, { type: "success" });
+      message(`您删除了字典名称为${row.name}的这条数据`, { type: "success" });
       onSearch();
     });
   }
@@ -181,12 +189,51 @@ export function useDictType(treeRef: Ref) {
     };
   }
 
-  const onQueryChanged = (query: string) => {
-    treeRef.value!.filter(query);
-  };
+  function toDetail(
+    parameter: LocationQueryRaw | RouteParamsRaw,
+    model: "query" | "params"
+  ) {
+    // ⚠️ 这里要特别注意下，因为vue-router在解析路由参数的时候会自动转化成字符串类型，比如在使用useRoute().route.query或useRoute().route.params时，得到的参数都是字符串类型
+    // 所以在传参的时候，如果参数是数字类型，就需要在此处 toString() 一下，保证传参跟路由参数类型一致都是字符串，这是必不可少的环节！！！
+    Object.keys(parameter).forEach(param => {
+      if (!isString(parameter[param])) {
+        parameter[param] = parameter[param].toString();
+      }
+    });
+    if (model === "query") {
+      // 保存信息到标签页
+      useMultiTagsStoreHook().handleTags("push", {
+        path: `/system/dict-data`,
+        name: "SystemDictData",
+        query: parameter,
+        meta: {
+          title: `字典数据`,
+          // 如果使用的是非国际化精简版title可以像下面这么写
+          // title: `No.${index} - 详情信息`,
+          // 最大打开标签数
+          dynamicLevel: 3
+        }
+      });
+      // 路由跳转
+      router.push({ name: "SystemDictData", query: parameter });
+    } else if (model === "params") {
+      useMultiTagsStoreHook().handleTags("push", {
+        path: `/system/dict-data/:id`,
+        name: "SystemDictData",
+        params: parameter,
+        meta: {
+          title: `字典数据`
+          // 如果使用的是非国际化精简版title可以像下面这么写
+          // title: `No.${index} - 详情信息`,
+        }
+      });
+      router.push({ name: "SystemDictData", params: parameter });
+    }
+  }
 
-  const filterMethod = (query: string, node) => {
-    return node.title!.includes(query);
+  // 用于页面刷新，重新获取浏览器地址栏参数并保存到标签页
+  const initToDetail = (model: "query" | "params") => {
+    if (getParameter) toDetail(getParameter, model);
   };
 
   onMounted(async () => {
@@ -201,17 +248,13 @@ export function useDictType(treeRef: Ref) {
     columns,
     rowStyle,
     dataList,
-    treeData,
-    isLinkage,
     pagination,
-    // buttonClass,
+    toDetail,
+    initToDetail,
     onSearch,
     resetForm,
     openDialog,
     handleDelete,
-    filterMethod,
-    onQueryChanged,
-    // handleDatabase,
     handleSizeChange,
     handleCurrentChange,
     handleSelectionChange

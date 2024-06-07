@@ -41,7 +41,6 @@ const iconClass = computed(() => {
   ];
 });
 
-const treeRef = ref();
 const formRef = ref();
 const tableRef = ref();
 const contentRef = ref();
@@ -56,6 +55,7 @@ const {
   rowStyle,
   dataList,
   pagination,
+  initToDetail,
   onSearch,
   resetForm,
   openDialog,
@@ -63,7 +63,9 @@ const {
   handleSizeChange,
   handleCurrentChange,
   handleSelectionChange
-} = useDictData(treeRef);
+} = useDictData();
+
+initToDetail("params");
 
 onMounted(() => {
   useResizeObserver(contentRef, async () => {

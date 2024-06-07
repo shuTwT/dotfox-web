@@ -1,33 +1,39 @@
 import dayjs from "dayjs";
-import { useRoute } from "vue-router";
+import {
+  type LocationQueryRaw,
+  type RouteParamsRaw,
+  useRoute,
+  useRouter
+} from "vue-router";
 import editForm from "../form.vue";
 import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import type { FormItemProps } from "./types";
 import type { PaginationProps } from "@pureadmin/table";
-import { deviceDetection } from "@pureadmin/utils";
+import { deviceDetection, isEmpty, isString } from "@pureadmin/utils";
 import {
   getSystemDictDataList,
   updateSystemDictData,
   addSystemDictData,
   deleteSystemDictData
 } from "@/api/system";
-import { type Ref, reactive, ref, onMounted, h, toRaw } from "vue";
+import { reactive, ref, onMounted, h, toRaw } from "vue";
+import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 
-export function useDictData(treeRef: Ref) {
+export function useDictData() {
+  const route = useRoute();
+  const router = useRouter();
+  const getParameter = isEmpty(route.params) ? route.query : route.params;
   const form = reactive({
     dictLabel: "",
     dictType: "",
     status: ""
   });
-  const route = useRoute();
   const curRow = ref();
   const formRef = ref();
   const dataList = ref([]);
-  const treeData = ref([]);
   const isShow = ref(false);
   const loading = ref(true);
-  const isLinkage = ref(false);
   const pagination = reactive<PaginationProps>({
     total: 0,
     pageSize: 10,
@@ -56,10 +62,10 @@ export function useDictData(treeRef: Ref) {
       cellRenderer: ({ row, props }) => (
         <el-tag
           size={props.size}
-          type={row.status == 1 ? "danger" : null}
+          type={row.status == 0 ? "danger" : null}
           effect="plain"
         >
-          {row.status == 1 ? "停用" : "正常"}
+          {row.status == 0 ? "停用" : "正常"}
         </el-tag>
       ),
       minWidth: 90
@@ -183,12 +189,51 @@ export function useDictData(treeRef: Ref) {
     };
   }
 
-  const onQueryChanged = (query: string) => {
-    treeRef.value!.filter(query);
-  };
+  function toDetail(
+    parameter: LocationQueryRaw | RouteParamsRaw,
+    model: "query" | "params"
+  ) {
+    // ⚠️ 这里要特别注意下，因为vue-router在解析路由参数的时候会自动转化成字符串类型，比如在使用useRoute().route.query或useRoute().route.params时，得到的参数都是字符串类型
+    // 所以在传参的时候，如果参数是数字类型，就需要在此处 toString() 一下，保证传参跟路由参数类型一致都是字符串，这是必不可少的环节！！！
+    Object.keys(parameter).forEach(param => {
+      if (!isString(parameter[param])) {
+        parameter[param] = parameter[param].toString();
+      }
+    });
+    if (model === "query") {
+      // 保存信息到标签页
+      useMultiTagsStoreHook().handleTags("push", {
+        path: `/system/dict-data`,
+        name: "SystemDictData",
+        query: parameter,
+        meta: {
+          title: `字典数据`,
+          // 如果使用的是非国际化精简版title可以像下面这么写
+          // title: `No.${index} - 详情信息`,
+          // 最大打开标签数
+          dynamicLevel: 3
+        }
+      });
+      // 路由跳转
+      router.push({ name: "SystemDictData", query: parameter });
+    } else if (model === "params") {
+      useMultiTagsStoreHook().handleTags("push", {
+        path: `/system/dict-data/:id`,
+        name: "SystemDictData",
+        params: parameter,
+        meta: {
+          title: `字典数据`
+          // 如果使用的是非国际化精简版title可以像下面这么写
+          // title: `No.${index} - 详情信息`,
+        }
+      });
+      router.push({ name: "SystemDictData", params: parameter });
+    }
+  }
 
-  const filterMethod = (query: string, node) => {
-    return node.title!.includes(query);
+  // 用于页面刷新，重新获取浏览器地址栏参数并保存到标签页
+  const initToDetail = (model: "query" | "params") => {
+    if (getParameter) toDetail(getParameter, model);
   };
 
   onMounted(async () => {
@@ -203,17 +248,12 @@ export function useDictData(treeRef: Ref) {
     columns,
     rowStyle,
     dataList,
-    treeData,
-    isLinkage,
     pagination,
-    // buttonClass,
+    initToDetail,
     onSearch,
     resetForm,
     openDialog,
     handleDelete,
-    filterMethod,
-    onQueryChanged,
-    // handleDatabase,
     handleSizeChange,
     handleCurrentChange,
     handleSelectionChange
