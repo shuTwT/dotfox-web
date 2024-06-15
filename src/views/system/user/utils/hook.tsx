@@ -16,12 +16,8 @@ import {
   hideTextAtIndex,
   deviceDetection
 } from "@pureadmin/utils";
-import {
-  getRoleIds,
-  getDeptList,
-  getUserList,
-  getAllRoleList
-} from "@/api/system";
+import { getRoleIds, getUserList, getAllRoleList } from "@/api/system";
+import { getDeptList } from "@/api/system/dept";
 import {
   ElForm,
   ElInput,

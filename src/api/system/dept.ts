@@ -1,9 +1,9 @@
 import { http } from "@/utils/http";
-import type { Result, TableResult } from "../types";
+import type { Result } from "../types";
 
 /** 获取系统管理-部门管理列表 */
 export const getDeptList = (params?: object) => {
-  return http.request<TableResult>("get", "/api/system/dept", { params });
+  return http.request<Result>("get", "/api/system/dept", { params });
 };
 
 export const addDept = (data: object) => {
