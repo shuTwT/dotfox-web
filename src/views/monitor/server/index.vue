@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { getServerInfoApi, ServerInfo } from "@/api/system";
+import { getServerInfoApi } from "@/api/system";
+import type { ServerInfo } from "@/api/types";
 import { onBeforeMount, ref } from "vue";
 
 /** 组件name最好和菜单表中的router_name一致 */
