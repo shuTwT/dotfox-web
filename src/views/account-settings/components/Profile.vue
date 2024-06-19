@@ -22,7 +22,7 @@ const userInfoFormRef = ref<FormInstance>();
 
 const userInfos = reactive({
   avatar: "",
-  nickName: "",
+  nickname: "",
   email: "",
   phonenumber: "",
   remark: ""
@@ -136,8 +136,8 @@ getMine().then(res => {
           </el-button>
         </el-upload>
       </el-form-item>
-      <el-form-item label="昵称" prop="nickName">
-        <el-input v-model="userInfos.nickName" placeholder="请输入昵称" />
+      <el-form-item label="昵称" prop="nickname">
+        <el-input v-model="userInfos.nickname" placeholder="请输入昵称" />
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-autocomplete
